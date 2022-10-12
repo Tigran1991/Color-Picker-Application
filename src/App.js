@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import "./App.css"
+import { Input } from "./Input"
+import * as Styled from "./styled"
 
 function App() {
+  const colorList = ["red", "#6262f5", "green", "cyan", "#123456"]
+  const [initialColor, setInitialColor] = useState("#123456")
+
+  const change = (updatedColor) => {
+    setInitialColor(updatedColor)
+  }
+
+  const changeEnd = (updatedColor) => {
+    setInitialColor(updatedColor)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input
+        color={initialColor}
+        colorList={colorList}
+        onChange={change}
+        onChangeEnd={changeEnd}
+      />
+      <Styled.ColorView color={initialColor}></Styled.ColorView>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
